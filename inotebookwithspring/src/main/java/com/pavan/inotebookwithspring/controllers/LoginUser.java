@@ -40,8 +40,6 @@ public class LoginUser
 			               
 		}
 			
-			
-			
 			}
 		//return "Login Failed!";
 		return null;
