@@ -6,4 +6,6 @@ import com.pavan.inotebookwithspring.models.User;
 
 public interface UserRepository extends JpaRepository<User, Long>{
 
+	User findByName(String name);
+
 }
