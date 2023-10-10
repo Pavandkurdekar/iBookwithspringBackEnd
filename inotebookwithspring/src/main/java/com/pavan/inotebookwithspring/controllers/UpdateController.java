@@ -2,6 +2,7 @@ package com.pavan.inotebookwithspring.controllers;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +13,7 @@ import com.pavan.inotebookwithspring.Repository.UserRepository;
 import com.pavan.inotebookwithspring.models.Notes;
 
 @RestController
+@CrossOrigin("http://localhost:3000")
 public class UpdateController {
 	
 	
@@ -32,7 +34,7 @@ public class UpdateController {
 	    	Notes note2=note1.get();
 	    	note2.setTitle(note.getTitle());
 	    	note2.setDescription(note.getDescription());
-	    	note2.setDate(note.getDate());
+	    	//note2.setDate(note.getDate());
 	    	//note2.setId(note.getId());
 	 
 			nrep.save(note2);

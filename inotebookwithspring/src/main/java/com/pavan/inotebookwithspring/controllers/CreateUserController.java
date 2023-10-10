@@ -2,15 +2,19 @@ package com.pavan.inotebookwithspring.controllers;
 
 import java.util.List;
 
+import javax.print.DocFlavor.STRING;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.pavan.inotebookwithspring.Repository.UserRepository;
 import com.pavan.inotebookwithspring.models.User;
 
 @RestController
+@CrossOrigin("http://localhost:3000")
+
 public class CreateUserController 
 {
 	@Autowired
@@ -33,7 +37,7 @@ public class CreateUserController
 		
 		repo.save(u);
 		
-		return "User Created";
+		return u.getName();
 		
 	}
 

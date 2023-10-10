@@ -1,24 +1,25 @@
- package com.pavan.inotebookwithspring.controllers;
+package com.pavan.inotebookwithspring.controllers;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pavan.inotebookwithspring.Repository.NotesRepository;
 import com.pavan.inotebookwithspring.Repository.UserRepository;
-import com.pavan.inotebookwithspring.models.Notes;
+
 import com.pavan.inotebookwithspring.models.User;
 
 @RestController
 @CrossOrigin("http://localhost:3000")
-public class LoginUser 
+public class Login 
+
 {
+	
+
 	@Autowired
 	UserRepository repo;
 	
@@ -26,36 +27,32 @@ public class LoginUser
 	NotesRepository noterepo;
 	
 	
-	@GetMapping("/getnotes/{name}")
-	List<Notes> Login(@PathVariable String name)
-	{
-		System.out.println("Recived request to display notes");
+	@PostMapping("/login")
+	String login(@RequestBody User user) {
 		
 		List<User> us = repo.findAll();
 		
+
+		//List<User> us = repo.findAll();
+		
 		for(User u : us)
 		{
-			if(u.getName().equals(name) )
+			if(u.getName().equals(user.getName()) && u.getPassword().equals(user.getPassword()))
 			{
-				List<Notes> n = noterepo.findAllByName(name);
+				//List<Notes> n = noterepo.findAllByName(name);
 				//System.out.println(n);
-				return n;
+				return "Login Successfull";
 			
-			
+		
 			               
 		}
 			
 			
 		}
-		//return "Login Failed!";
-		return null;
-		
-		
-		
-	
-		
+		return "Wrong Password or Email";
 		
 	}
 	
 	
+
 }
